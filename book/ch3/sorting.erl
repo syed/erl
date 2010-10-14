@@ -1,7 +1,7 @@
 -module(sorting).
--export([quicksort/1,mergesort/1]).
+-export([quicksort/1,mergesort/1,qsort/1]).
 
-% Quicksort main logic 
+% Quicksort main logic ( UGLY !!!!!!!! )
 quicksort([])->
     [];
 quicksort([H|T]) ->
@@ -37,6 +37,20 @@ list_merge([],L2)->
 list_merge([H|T],L2) ->
     [H|list_merge(T,L2)].
 
+% merge sort 
 
-mergesort(L)->
+mergesort(List)->
     [].
+
+% A very short implementation of quick sort ( copied from wikipedia :P) 
+
+qsort([]) ->
+    [];
+
+qsort([Pivot|T]) ->
+    qsort([Front|| Front <- T, Front < Pivot])
+    ++ [Pivot] ++ 
+    qsort([Back||Back <- T , Back >= Pivot ]).
+
+
+
