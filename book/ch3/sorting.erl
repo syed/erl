@@ -53,4 +53,3 @@ qsort([Pivot|T]) ->
     qsort([Back||Back <- T , Back >= Pivot ]).
 
 
-
