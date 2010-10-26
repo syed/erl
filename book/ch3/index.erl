@@ -53,10 +53,7 @@ find_and_insert(W,Count,[{W1,L1} |T]) when W1 == W ->
 find_and_insert(W,Count,[H|T]) ->
     [H| find_and_insert(W,Count,T)].
 
-
 	    
-
-
     
     
 
