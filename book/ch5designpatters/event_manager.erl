@@ -35,3 +35,18 @@ terminate([{Handler,Data}| Tail]) ->
 
 
 
+% core API exposed by the event manager
+
+add_handler(Name,Handler,InitData)->
+    call(Name,{add_handler,Handler,InitData}).
+
+delete_handler(Name,Handler)->
+    call(Name,{delete_handler,Handler}).
+
+get_data(Name,Handler)->
+    call(Name,{get_data,Handler}.
+
+send_event(Name,Event)->
+    call(Name,{send_event,Event}).
+
+handler_msg({add
