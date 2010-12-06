@@ -3,12 +3,19 @@
 
 
 start()->
-    register(link_add_proc,spawn_link(link_add,loop,[])).
+    process_flag(trap_exit,true),
+    Pid=spawn_link(link_add,loop,[]),
+    register(link_add_proc,Pid),
+    {ok,Pid}.
+
+
 request(Int) ->
     link_add_proc ! { request , self() , Int } ,
     receive 
 	{ result , Result } ->
-	    Result
+	    Result;
+	{ 'EXIT' , _Pid , Reason } -> { error , Reason }
+       
     after 1000 ->
 	    timeout 
     end.
