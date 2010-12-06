@@ -1,0 +1,2 @@
+-module(stats_handler).
+-export([init/1
