@@ -31,12 +31,13 @@ from the shell comple like so ::
 Common syntax mistakes
 ======================
 
-1. Not using comma in case of multi line statement.::
+* Not using comma in case of multi line statement::
 
    X = 32 <-- missing comma
    Y = 38 
 
-compiles to give the followoing error::
+   compiles to give the followoing error::
+
    lists_bit_syntax.erl:7: syntax error before: Y
 
 
