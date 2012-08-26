@@ -3,6 +3,7 @@
 
 main([]) ->
     %simple list
+    X=3,
     [1,2,3],
     % list wit lot of different elements
     [1,2,3,{numbers,[4,5,6]}, 5.34, atom],
