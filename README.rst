@@ -40,22 +40,22 @@ Common syntax mistakes
 
    lists_bit_syntax.erl:7: syntax error before: Y
    
-* Forgetting that io:format takes a list to substitute values. ::
+* Forgetting that io:format takes a list to substitute values.::
 
-  io:format("Value of X and Y are ~p , ~p" , X,Y) % Wrong, X,Y should be in a list
-  io:format("Value of X and Y are ~p , ~p" , [X,Y]) % Correct
+    io:format("Value of X and Y are ~p , ~p" , X,Y) % Wrong, X,Y should be in a list
+    io:format("Value of X and Y are ~p , ~p" , [X,Y]) % Correct
 
 * Not closing function clauses with semi-colon ( last one will close with a ".")::
 
-  valid_time({Y,M,D),{H,Min,S})->
-    io_format("Good") . <-- There should be a semi-colon here instead of dot as it is part of clause
-  valid_time(_) ->
-    io:format("Invalid input"). <- last function in the clause ends with dot 
+    valid_time({Y,M,D),{H,Min,S})->
+        io_format("Good") . <-- There should be a semi-colon here instead of dot as it is part of clause
+    valid_time(_) ->
+        io:format("Invalid input"). <- last function in the clause ends with dot 
     
 * look out for less than equals and greater than equals::
 
-  <= wrong =< right
-  => wrong >= right 
+    <= wrong =< right
+    >= right => wrong 
 
 
 ==============================
@@ -74,7 +74,7 @@ Resources and other stuff
 
     - `learn you some erlang <http://learnyousomeerlang.com>`_ book
     - `Erlang programming <http://en.wikibooks.org/wiki/Erlang_Programming>`_  on Wikibooks
-    - `Erlang programming <http://www.erlangprogramming.org/>`_ by O'Reilly 
+    - `Erlang programming book <http://www.erlangprogramming.org/>`_ by O'Reilly 
 
 * Other git repos for the book excersises
 
