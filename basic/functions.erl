@@ -9,7 +9,8 @@ main([])->
     valid_time( { {2012,09,10} , {23,13,53} } ),
     io:format("13 old enough ? ~p , 20 old enough ? ~p~n", [is_old_enough(13) , is_old_enough(20)] ),
     io:format("13 right age ? ~p , 20 right age ? ~p~n", [right_age(13) , right_age(20)] ),
-    io:format("13 wrong age ? ~p , 20 wrong age ? ~p~n", [wrong_age(13) , wrong_age(20)] ).
+    io:format("13 wrong age ? ~p , 20 wrong age ? ~p~n", [wrong_age(13) , wrong_age(20)] ),
+    io:format("check value 1  ~p , check value 0  ~p, check value 2  ~p~n", [check_fine(1) , check_fine(0), check_fine(2)] ).
 
     
 
@@ -75,4 +76,40 @@ wrong_age(_) ->
 % (A.B);C is not allowed but ((A andalso B ) orelse C) will work`
 
 
+% erlang if's. 
+% They are similar to guards , is and and ; is or 
 
+check_fine(Value) ->
+    Ret = if Value =:= 1 ->  % we can assign the return of this if clause
+            fine; %returns this atom  
+       Value =:= 0 -> 
+            not_fine;
+       true -> % catch all. Acts like else     
+           invalid_value
+    end,
+    Ret.
+
+% case of .... this is more full fleddged way of conditianlly executing code
+% in a function . We can use complex pattern matching here and can have guards
+% in each clause 
+
+insert(X,[]) ->
+    X;
+insert(X,Set) ->
+    case lists:member(X,Set) of 
+        true -> Set;
+        false -> [X|Set]
+    end.
+
+
+% exmaple with guards 
+beach(Temperature) ->
+    case Temperature of 
+        {celsius,N} when N>=20, N =< 45 -> 
+            favourable;
+        {kelvin, N} when N >= 293, N =< 318 ->
+            scientifically_favorable;
+        _ ->  %catch all
+            invalid
+
+    end.    
