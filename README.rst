@@ -84,8 +84,7 @@ Useful libraries and man pages
 
 * `io:format <http://erlang.org/doc/man/io.html#format-3>`_  man page 
 * `Coding standards <http://www.erlang.se/doc/programming_rules.shtml>`_ for erlang
-* `list of functions/bifs <http://learnyousomeerlang.com/types-or-lack-thereof#dynamite-strong-typing>`_ allowed 
-   guards
+* `list of functions/bifs <http://learnyousomeerlang.com/types-or-lack-thereof#dynamite-strong-typing>`_ allowed in guards
 
 
 
