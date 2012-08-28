@@ -57,6 +57,26 @@ Common syntax mistakes
     <= wrong =< right
     >= right => wrong 
 
+* forgetting semi-colon in  both `if` and `case ... of` clauses and adding semi-clon in the last clause::
+
+    if X == vala ->
+        Res = call_some_function(X),
+        Res; <--- this semi-colon should be there for all-but-last if clause
+    if X == valb -> 
+        Res = call_some_other_function(X),
+        Res <--- last clause should not have anything. It is the end that completes the if block
+    end,
+
+    % case can let us do pattern matching 
+    case X of ->
+        vala ->
+            Res = call_some_function(X),
+            Res;
+        valb ->
+            Res = call_some_other_function(X),
+            Res
+    end.  
+        
 
 ==============================
 Useful libraries and man pages
@@ -64,6 +84,9 @@ Useful libraries and man pages
 
 * `io:format <http://erlang.org/doc/man/io.html#format-3>`_  man page 
 * `Coding standards <http://www.erlang.se/doc/programming_rules.shtml>`_ for erlang
+* `list of functions/bifs`<http://learnyousomeerlang.com/types-or-lack-thereof#dynamite-strong-typing>`_ allowed 
+   guards
+
 
 
 =========================
