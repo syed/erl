@@ -13,6 +13,8 @@ main([])->
     io:format("check value 1  ~p , check value 0  ~p, check value 2  ~p~n", [check_fine(1) , check_fine(0), check_fine(2)] ).
 
     
+% I am roughly trying to follow conventions mentioned
+% in http://www.erlang.se/doc/programming_rules.shtml
 
 %---------------------------------------
 % Function : head/1
