@@ -76,7 +76,21 @@ Common syntax mistakes
             Res = call_some_other_function(X),
             Res
     end.  
-        
+       
+* ending the last statement of an anonymous funtion with a period. In a normal fuction last statement is followed by a period::
+
+
+  % Normal function 
+  do_something(X) ->
+    io:format("Printing value of X ~p" ,[ X ] ),
+    io:format("Doing somethiing~n"). % <-------- notice the period here
+
+  DoSomething = fun(A) -> 
+    io:format("Printing value of X ~p" ,[ X ] ),
+    io:format("Doing somethiing~n") %<--------  no period is required 
+  end % <------ , or . depending on where it is 
+
+
 
 ==============================
 Useful libraries and man pages
