@@ -1,6 +1,14 @@
 -module(bifs).
--export([obj_access/0,get_stuff/0,format_print/0]).
+-export([obj_access/0,get_stuff/0,format_print/0,main/1]).
 
+
+main([]) ->
+    io:format("OBJECT ACCESS ~n"),
+    obj_access(),
+    io:format("GET STUFF ~n"),
+    get_stuff(),
+    io:format("FORMAT PRINT~n"),
+    format_print().
 
 % Common bifs 
 
@@ -43,4 +51,4 @@ format_print() ->
     % ~w - standard syntax like you would see on the shell 
     % ~W ~P - take an extra arg specifing the depth to print 
     %  ~n - newline 
-    io:format("List : ~P , Tuple : ~p , Int : ~p , Float ~p , Str : ~p " ,[List , 3 , Tuple , Int , Float , Str ] ).
+    io:format("~nList : ~P , Tuple : ~p , Int : ~p , Float ~p , Str : ~p ~n" ,[List , 3 , Tuple , Int , Float , Str ] ).
