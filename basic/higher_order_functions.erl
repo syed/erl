@@ -52,8 +52,21 @@ main([]) ->
 
     % example of using filter , pick out the even elements in a list
 
-    io:format("Even elements in [3,1,6,2,5,8] ~p ~n",[ filter(fun higher_order_functions:even_check/1 , [3,1,6,2,5,8]) ] ).
+    io:format("Even elements in [3,1,6,2,5,8] ~p ~n",[ filter(fun higher_order_functions:even_check/1 , [3,1,6,2,5,8]) ] ),
 
+    
+    io:format("max element in [3,1,6,2,5,9,7] (without fold) ~p ~n",[ max([3,1,6,2,5,9,7]) ] ),
+
+    % example using fold find max element in list
+    % notice here that we have to pass the first element 
+    % seperately as fold requires one start value 
+
+    io:format("max element in [3,1,6,2,5,9,7] (using fold + anon function) ~p ~n",[ fold( fun (A,B) when A > B -> A ; (_,B) -> B end ,3,[1,6,2,5,9,7]) ] ).
+
+
+
+   
+    %% END of main %% 
 
 %example fuction is increment  and decrement
 % we will use them in main 
@@ -96,5 +109,23 @@ filter(TestFunction,[H|T],FinalList) ->
             false ->
                 filter(TestFunction,T,FinalList)
     end.
+
+% Fold abstraction, in this we will take each element of 
+% the list and reduce ( fold ) it to one element 
+% eg: sum(List)  which will reduce the whole list to one number
+%
+
+fold(_,Start,[]) -> Start;
+fold(Func,Start,[H|T])-> fold( Func,Func(Start,H),T ).
+
+
+% finding max element in list : Without fold 
+max([]) -> empty;
+max([H|T]) -> max2(T,H).
+
+max2([],Max) -> Max;
+max2([H|T],Max) when H > Max ->
+    max2(T,H);
+max2([_|T],Max) -> max2(T,Max).
 
 
