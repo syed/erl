@@ -90,6 +90,17 @@ Common syntax mistakes
     io:format("Doing somethiing~n") %<--------  no period is required 
   end % <------ , or . depending on where it is 
 
+* putting -> after `receive` or leaving -> after `after` ::
+
+  % this is a bit weird but have to live with the syntax
+  % there should be no '->' after the receive and there should be
+  % a '->' after the 'after'
+
+  receive 
+    { From, Msg } -> do_something(Msg)
+  after 2000 -> 
+    timeout
+  end,
 
 
 ==============================
