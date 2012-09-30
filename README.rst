@@ -110,6 +110,7 @@ Useful libraries and man pages
 * `io:format <http://erlang.org/doc/man/io.html#format-3>`_  man page 
 * `Coding standards <http://www.erlang.se/doc/programming_rules.shtml>`_ for erlang
 * `list of functions/bifs <http://learnyousomeerlang.com/types-or-lack-thereof#dynamite-strong-typing>`_ allowed in guards
+* Erlang `design principles http://www.erlang.org/doc/design_principles/applications.html#id71171>`_
 
 
 
@@ -131,7 +132,3 @@ Resources and other stuff
 * Google Group for discussion  
 
     - http://groups.google.com/group/erlang-programming-book
-
-
-
-
