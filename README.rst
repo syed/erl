@@ -28,6 +28,7 @@ from the shell comple & run like so ::
     >hello:start().
 
 to compile from a Emakefile do ::
+
     $ cd /path/to/emakefile
     $ erl -make
 
