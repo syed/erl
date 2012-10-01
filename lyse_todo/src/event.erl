@@ -15,8 +15,8 @@ start(EventName,Delay) ->
 start_link(EventName,Delay) ->
     spawn_link(?MODULE,init,[self(),EventName,normalize(Delay)]).
 
-init(Server,Name,Delay) ->
-    loop(#state{server=Server,name=Name,delay_list=Delay}).
+init(Server,Name,DateTime) ->
+    loop(#state{server=Server,name=Name,delay_list=convert_datetime_to_seconds(DateTime)}).
 
 % main loop for the event. we sleep till the delay time
 % given during init and wakeup and send 
@@ -68,4 +68,5 @@ convert_datetime_to_seconds(Time={{_,_,_},{_,_,_}} ) ->
     RemTime =calendar:datetime_to_gregorian_seconds(Time) - calendar:datetime_to_gregorian_seconds(Now),
     Sec = if RemTime > 0 -> RemTime;
              RemTime =< 0 -> 0
-    normalize(Sec)
+        end,
+    normalize(Sec).
