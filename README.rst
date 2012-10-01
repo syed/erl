@@ -85,27 +85,26 @@ Common syntax mistakes
 * ending the last statement of an anonymous funtion with a period. In a normal fuction last statement is followed by a period::
 
 
-  % Normal function 
-  do_something(X) ->
-    io:format("Printing value of X ~p" ,[ X ] ),
-    io:format("Doing somethiing~n"). % <-------- notice the period here
+      % Normal function 
+      do_something(X) ->
+        io:format("Printing value of X ~p" ,[ X ] ),
+        io:format("Doing somethiing~n"). % <-------- notice the period here
 
-  DoSomething = fun(A) -> 
-    io:format("Printing value of X ~p" ,[ X ] ),
-    io:format("Doing somethiing~n") %<--------  no period is required 
-  end % <------ , or . depending on where it is 
+      DoSomething = fun(A) -> 
+        io:format("Printing value of X ~p" ,[ X ] ),
+        io:format("Doing somethiing~n") %<--------  no period is required 
+      end % <------ , or . depending on where it is 
 
 * putting -> after `receive` or leaving -> after `after` ::
 
-  % this is a bit weird but have to live with the syntax
-  % there should be no '->' after the receive and there should be
-  % a '->' after the 'after'
-
-  receive 
-    { From, Msg } -> do_something(Msg)
-  after 2000 -> 
-    timeout
-  end,
+    % this is a bit weird but have to live with the syntax
+    % there should be no '->' after the receive and there should be
+    % a '->' after the 'after'
+    receive 
+      { From, Msg } -> do_something(Msg)
+    after 2000 -> 
+      timeout
+    end,
 
 
 ==============================
