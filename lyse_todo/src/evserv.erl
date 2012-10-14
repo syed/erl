@@ -24,7 +24,7 @@ terminate()->
 
 subscribe(Pid) -> 
     Ref = erlang:monitor(process,whereis(?MODULE)),
-    ?MODULE ! { self() , { subscribe , Pid } },
+    ?MODULE ! { self() , Ref, { subscribe , Pid } },
     receive 
         { Ref, ok } -> { ok, Ref };
         {'DOWN',Ref,process,_Pid,Reason} -> { error, Reason }

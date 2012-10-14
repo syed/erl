@@ -1,5 +1,5 @@
 -module(sup).
--export([start/2,start_link/2,init/2,loop/1]).
+-export([start/2,start_link/2,init/1,loop/1]).
 
 
 start(Mod,Args)->
