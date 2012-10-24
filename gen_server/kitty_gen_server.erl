@@ -27,7 +27,8 @@ order_cat(Pid,Name,Color,Description) ->
 
 % Async API. This call is called by the client if
 % it wants to return a cat back. We will put the 
-% cat in DB and return OK
+% cat in DB and return OK. here we don't block 
+% for the result.
 
 return_cat(Pid,Cat=#cat{})->
     gen_server:cast(Pid,{return,Cat}).
