@@ -4,7 +4,8 @@
 % these functions will be called when the event
 % handler receives the event 
 set_teams(TeamA,TeamB) ->
-    io:format("Team ~s vs. Team ~s~n",[TeamA,TeamB]).
+    io:format("Team ~s vs. Team ~s~n",
+                            [TeamA,TeamB]).
 
 next_round()->
     io:format("Round over~n").
