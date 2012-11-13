@@ -33,7 +33,7 @@ init({RestartStrategy, MaxRestart, MaxTime})->
     %
     % { ok, { RestartStrategy, MaxRst, MaxTime ,  [ChildSpec] }}
     % where childspec is  list of :
-    % { Id, StartFunc, Restart, Shutdown, Type, Modules }
+    % { Id, StartFunc, RestartType, Shutdown, Type, Modules }
     % 
     % *Id* : name used to identify the child internally
     % 
@@ -43,7 +43,8 @@ init({RestartStrategy, MaxRestart, MaxTime})->
     %   NOTE: the StartFunc must create and *link* to 
     %   the child proc
     % 
-    % *Restart* : this defines when a terminated child should be
+    % *RestartType* : this defines when a 
+    %   terminated child should be
     %   started. it can take 3 possible values
     %
     %   a) permanent : a permanant process should always be
