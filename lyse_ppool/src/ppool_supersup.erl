@@ -3,7 +3,7 @@
 
 -module(ppool_supersup).
 -behaviour(supervisor).
--export([start_link/0, start_pool/3, stop_pool/1, stop/0]).
+-export([start_link/0, start_pool/3, stop_pool/1 ]).
 
 %for supervisor
 
@@ -12,12 +12,6 @@
 start_link()->
     supervisor:start_link({local,ppool}, ?MODULE, []).
 
-stop()->
-    case whereis(ppool) of 
-        P when is_pid(P)->
-            exit(P,kill);
-        _ -> ok
-    end.
 
 init([]) ->
     MaxRestart=6,

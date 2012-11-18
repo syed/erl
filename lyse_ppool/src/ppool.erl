@@ -1,16 +1,19 @@
 -module(ppool).
+-behaviour(application).
+
+
 
 %API module for abstracting all the other oprations
 %for ppool
 
--export([start_link/0, stop/0, start_pool/3, 
+-export([start/2, stop/1, start_pool/3, 
         run/2, sync_queue/2, async_queue/2, stop_pool/1]).
 
 
-start_link()->
+start(normal, _Args)->
     ppool_supersup:start_link().
 
-stop()->
+stop(_State)->
     ppool_supersup:stop().
 
 start_pool(Name, Limit, {M,F,A})->
