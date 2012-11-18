@@ -38,7 +38,7 @@ run(Name, Args) ->
     gen_server:call(Name, {run, Args}).
 
 sync_queue(Name, Args) ->
-    gen_server:call(Name, {sync, Args}, inifinity).
+    gen_server:call(Name, {sync, Args}, infinity).
 
 async_queue(Name, Args) ->
     gen_server:cast(Name, {async, Args}).
