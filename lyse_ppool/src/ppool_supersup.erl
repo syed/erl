@@ -3,7 +3,7 @@
 
 -module(ppool_supersup).
 -behaviour(supervisor).
--export([start_link/0, start_pool/3, stop_pool/1 ]).
+-export([start_link/0, start_pool/3, stop_pool/1]).
 
 %for supervisor
 
@@ -11,6 +11,14 @@
 
 start_link()->
     supervisor:start_link({local,ppool}, ?MODULE, []).
+
+%not required for application
+%stop()->
+%    case whereis(ppool) of 
+%        P when is_pid(P) ->
+%            exit(P,kill);
+%        _ -> ok 
+%    end.
 
 
 init([]) ->
@@ -30,5 +38,6 @@ start_pool(Name, Limit, MFA ) ->
 stop_pool(Name) ->
     supervisor:terminate_child(ppool, Name),
     supervisor:delete_child(ppool, Name).
+
 
 

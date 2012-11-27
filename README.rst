@@ -106,6 +106,11 @@ Common syntax mistakes
       timeout
     end,
 
+* be very careful with records ::
+
+  % observe how records are used in the function head and the return 
+  % see the '=' sign 
+  
 
 ==============================
 Useful libraries and man pages

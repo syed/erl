@@ -6,6 +6,16 @@
 -export( [init/1, handle_call/3, handle_cast/2, handle_info/2,
             code_change/3, terminate/2]).
 
+% this is marco for starting a worker supervisor
+% the arcitechrue of a single pool is like this.
+%
+% There is one supervisor for each pool which has under it
+% a) a gen_server which is responsible for starting jobs
+%   and maintaining a queue for all the jobs
+% b) another supervisor which will start the acutal
+%    worker under it 
+% (a) is only one per pool 
+% (b) can be many ( the server uses supervisor:start_child() to start (b) 
 -define(SPEC(MFA),
     {worker_sup,
         { ppool_worker_sup, start_link, [MFA]},
@@ -50,13 +60,15 @@ stop(Name) ->
 % gen_server functions 
 
 init({ Limit, MFA, Sup}) ->
+    % ideally here we should start 
+    % the supervisor for worker process but
     % we cannot do this because this will 
     % result in a deadlock because the server
     % process will wait for supervisor to initailize
     % and the supervisor will wait for server
     % to initalize instead we  pass a custom message
     % which we handle in handle_info so the the 
-    % init in the server returns a pid
+    % init in the server returns a pid to its supervisor
     % {ok, Pid} = supervisor:start_child(Sup, ?SPEC(MFA)),
     self() ! {start_worker_supervisor,  MFA, Sup },
     {ok, #state{limit=Limit, refs=gb_sets:empty()}}.
@@ -66,7 +78,6 @@ handle_info({start_worker_supervisor, MFA, Sup} , S = #state{}) ->
     {noreply, S#state{sup=Pid}};
 
 handle_info({ 'DOWN', Ref, process, _Pid, _} , S=#state{refs=Refs}) ->
-    io:format("Recieived down mesg ~n"),
     case gb_sets:is_element(Ref,Refs) of 
         true ->
             handle_down_worker(Ref,S);
@@ -85,10 +96,10 @@ handle_call({ run, Args }, _From, S=#state{limit=N, refs=R, sup=Sup}) when N > 0
 handle_call({ run, _Args }, _From, _S=#state{limit = N}) when N =< 0 ->
     { reply, noalloc , _S };
 
-handle_call({ sync, Args} , _From, S=#state{limit=N, sup=Sup, refs=R}) when N > 0 ->
+handle_call({ sync, Args } , _From, S=#state{limit=N, refs=R, sup=Sup}) when N > 0 ->
     {ok, Pid} = supervisor:start_child(Sup, Args),
     Ref = erlang:monitor(process, Pid),
-    {reply, {ok, Pid}, S=#state{limit = N-1, refs= gb_sets:add(Ref,R)}};
+    {reply, {ok, Pid}, S#state{limit=N-1, refs=gb_sets:add(Ref,R)}};
 
 handle_call({ sync, Args} , From, S=#state{queue=Q}) ->
     {noreply, S#state{queue=queue:in({From, Args},Q)}};
