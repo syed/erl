@@ -110,12 +110,11 @@ Common syntax mistakes
 
   % observe how records are used in the function head and the return 
   % see the '=' sign 
-
   -record( state, { name="testing", 
                     value=0,
                     flags }.
 
-  increase_val( S=#state{ value=V, name=Name}, IncVal)        % notice the '=' here
+  increase_val( S=#state{ value=V, name=Name}, IncVal) ->        % notice the '=' here
     %increases the value of state by IncVal amount
     io:format("increasing value of ~p by ~p~n",[Name,IncVal]),
     S#state{ value=V+Inc}.                                    % no '=' in the return value
